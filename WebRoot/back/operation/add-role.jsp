@@ -66,8 +66,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					values.push(id[i].value);
   				}
   			}
-  			document.getElementById("form").submit();
-  		}
+  			//window.location.href="AddRole";
+  			window.location.href="AddRole?values="+values.toString();
+			
+  			
+  			//window.location.href="http://www.jb51.net/article/85384.htm";
+}
+  			
+  		
   		</script>
   </body>
 </html>

@@ -25,6 +25,6 @@
 			<attribute name="owner.project.facets" value="me.hibernate"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/linshi/youzhuan1/WebRoot/WEB-INF/lib/c3p0-0.9.5-pre1.jar"/>
+	<classpathentry kind="lib" path="/youzhuan1/WebRoot/WEB-INF/lib/c3p0-0.9.5-pre1.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

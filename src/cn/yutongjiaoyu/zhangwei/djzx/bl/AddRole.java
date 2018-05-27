@@ -52,7 +52,7 @@ public class AddRole extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		System.out.print(request.getParameter("values"));
 	}
 
 	/**

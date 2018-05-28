@@ -27,10 +27,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<table id="table1" width="500">
     			<tr><td colspan="4" align="right"><input type=button value="后退" onclick="turnback()"/></td></tr>
     		</table>
-    	<form action="AddRole" method="post" id="form">
 	  		<table id="table" border="1" width="500" cellspacing="0" >
-	  			<tr><td>角色名</td><td><input type="text" ></td></tr>
-	  			<tr><td valign="top">角色介绍</td><td><textarea cols="55" rows="20" style="resize:none"></textarea></td></tr>
+	  			<tr><td>角色名</td><td><input type="text" name="roleName" id="roleName" autocomplete="off"/></td></tr>
+	  			<tr><td valign="top">角色介绍</td><td><textarea cols="55" rows="20" style="resize:none" name="roleIntroduction" id="roleIntroduction"></textarea></td></tr>
 	  			<tr>
 	  				<td>权限范围</td>
 	  				<td>
@@ -39,10 +38,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				<input type="checkbox" name="act" value="浏览视频7">浏览视频7<input type="checkbox" name="act" value="浏览视频8">浏览视频8  <input type="checkbox" name="act" value="浏览视频9">浏览视频 9 <br/>  
 	  			    </td>
 	  			</tr>
-	  			<tr><td>权限等级</td><td><input type="text"/></td></tr>
+	  			<tr><td>权限等级</td><td><input type="text" id="premissionLevel" name="premissionLevel" autocomplete="off"/></td></tr>
 	  		</table>
 	  		<input type="button" onclick="send()" value="提交"/>
-	  	</form>
   		</div>
   		
   		<script language=javascript>
@@ -66,11 +64,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					values.push(id[i].value);
   				}
   			}
-  			//window.location.href="AddRole";
-  			window.location.href="AddRole?values="+values.toString();
-			
-  			
-  			//window.location.href="http://www.jb51.net/article/85384.htm";
+  			var roleName=document.getElementById("roleName").value;
+  			var roleIntroduction=document.getElementById("roleIntroduction").value;
+  			var rolePremission=document.getElementById("premissionLevel").value;
+  			window.location.href="AddRole?roleName="+roleName+"&values="+values.toString()+"&roleIntroduction="+roleIntroduction+"&premissionLevel="+rolePremission;
 }
   			
   		

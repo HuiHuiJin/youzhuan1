@@ -2,11 +2,20 @@ package cn.yutongjiaoyu.zhangwei.djzx.bl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cn.yutongjiaoyu.zhangwei.djzx.model.Juese;
+import cn.yutongjiaoyu.zhangwei.djzx.model.JueseDAO;
+import cn.yutongjiaoyu.zhangwei.djzx.model.Juesequanxian;
+import cn.yutongjiaoyu.zhangwei.djzx.model.JuesequanxianDAO;
 
 public class AddRole extends HttpServlet {
 
@@ -52,7 +61,42 @@ public class AddRole extends HttpServlet {
 	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.print(request.getParameter("values"));
+		
+			//获取添加角色模块传递过来的各项数据
+			String name = request.getParameter("roleName");
+			String introduction = request.getParameter("roleIntroduction");
+			String premisson = request.getParameter("values");
+			String premissionLevel = request.getParameter("premissionLevel");
+			
+			//新建角色对象，角色权限对象，分别传入网页传来的值，然后将角色权限对象添加进角色对象然后存入数据库
+			/*Juese juese = new Juese();
+			juese.setJueseming(name);
+			juese.setJuesejieshao(introduction);
+			Juesequanxian juesequanxian = new Juesequanxian();
+			juesequanxian.setCaozuobiao(premisson);
+			juesequanxian.setQuanxian(premissionLevel);
+			juesequanxian.setJuese(juese);
+			
+			
+			Set<Juesequanxian> juesequanxians = new HashSet<Juesequanxian>(0);
+			juesequanxians.add(juesequanxian);
+			juese.setJuesequanxians(juesequanxians);
+			JueseDAO addjuese = new JueseDAO();
+			addjuese.save(juese);
+			*/
+			Juese juese = new Juese();
+			juese.setJueseming(name);
+			juese.setJuesejieshao(introduction);
+			JueseDAO juesedao = new JueseDAO();
+			juesedao.save(juese);
+
+			Juesequanxian jsqx = new Juesequanxian();
+			jsqx.setCaozuobiao(premisson);
+			jsqx.setQuanxian(premissionLevel);
+			jsqx.setJuese(juese);
+			JuesequanxianDAO jsqxdao = new JuesequanxianDAO();
+			jsqxdao.save(jsqx);
+			
 	}
 
 	/**

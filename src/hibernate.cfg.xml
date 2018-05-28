@@ -13,7 +13,7 @@
 			jdbc:sqlserver://127.0.0.1:1433;databaseName=tongrenyouzhuan
 		</property>
 		<property name="connection.username">sa</property>
-		<property name="connection.password">22008190</property>
+		<property name="connection.password">123456</property>
 		<property name="connection.driver_class">
 			com.microsoft.sqlserver.jdbc.SQLServerDriver
 		</property>

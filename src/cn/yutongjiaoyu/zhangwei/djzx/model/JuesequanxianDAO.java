@@ -1,10 +1,13 @@
 package cn.yutongjiaoyu.zhangwei.djzx.model;
 
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
 /**
@@ -26,10 +29,14 @@ public class JuesequanxianDAO extends BaseHibernateDAO {
 
 	public void save(Juesequanxian transientInstance) {
 		log.debug("saving Juesequanxian instance");
+		Session ss =getSession();
+		Transaction sw = ss.beginTransaction();
 		try {
-			getSession().save(transientInstance);
+			ss.save(transientInstance);
+			sw.commit();
 			log.debug("save successful");
 		} catch (RuntimeException re) {
+			sw.rollback();
 			log.error("save failed", re);
 			throw re;
 		}

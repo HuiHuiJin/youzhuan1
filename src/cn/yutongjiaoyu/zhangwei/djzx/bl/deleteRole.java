@@ -2,27 +2,18 @@ package cn.yutongjiaoyu.zhangwei.djzx.bl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.yutongjiaoyu.zhangwei.djzx.model.Juese;
-import cn.yutongjiaoyu.zhangwei.djzx.model.JueseDAO;
-import cn.yutongjiaoyu.zhangwei.djzx.model.Juesequanxian;
-import cn.yutongjiaoyu.zhangwei.djzx.model.JuesequanxianDAO;
-
-public class AddRole extends HttpServlet {
+public class deleteRole extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public AddRole() {
+	public deleteRole() {
 		super();
 	}
 
@@ -46,7 +37,20 @@ public class AddRole extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		this.doPost(request, response);
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the GET method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
 	}
 
 	/**
@@ -62,31 +66,19 @@ public class AddRole extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-			//获取添加角色模块传递过来的各项数据
-			String name = request.getParameter("roleName");
-			String introduction = request.getParameter("roleIntroduction");
-			String premisson = request.getParameter("values");
-			String premissionLevel = request.getParameter("premissionLevel");
-			
-			//新建角色对象，将值传入其中
-			Juese juese = new Juese();
-			juese.setJueseming(name);
-			juese.setJuesejieshao(introduction);
-			JueseDAO juesedao = new JueseDAO();
-			juesedao.save(juese);
-			
-			//新建角色权限对象，将值传入其中
-			Juesequanxian jsqx = new Juesequanxian();
-			jsqx.setCaozuobiao(premisson);
-			jsqx.setQuanxian(premissionLevel);
-			jsqx.setJuese(juese);
-			JuesequanxianDAO jsqxdao = new JuesequanxianDAO();
-			jsqxdao.save(jsqx);
-		
-			System.out.println(juesedao.findById(1));
-			
-			response.sendRedirect("./back/operation/admin-role.jsp");
-			
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">");
+		out.println("<HTML>");
+		out.println("  <HEAD><TITLE>A Servlet</TITLE></HEAD>");
+		out.println("  <BODY>");
+		out.print("    This is ");
+		out.print(this.getClass());
+		out.println(", using the POST method");
+		out.println("  </BODY>");
+		out.println("</HTML>");
+		out.flush();
+		out.close();
 	}
 
 	/**

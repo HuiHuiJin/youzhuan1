@@ -149,4 +149,16 @@ public class JueseDAO extends BaseHibernateDAO {
 			throw re;
 		}
 	}
+	
+	public List<Juese> findpage(int begin,int end) {
+		log.debug("finding all Juese instances");
+		try {
+			String queryString = "from Juese";
+			Query queryObject = getSession().createQuery(queryString);
+			return queryObject.setFirstResult(begin).setMaxResults(end).list();
+		} catch (RuntimeException re) {
+			log.error("find all failed", re);
+			throw re;
+		}
+	}
 }

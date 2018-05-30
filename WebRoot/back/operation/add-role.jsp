@@ -57,6 +57,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		
   		function send(){
+  			var roleName=document.getElementById("roleName").value;
+  			var roleIntroduction=document.getElementById("roleIntroduction").value;
+  			var rolePremission=document.getElementById("premissionLevel").value;
   			var id = document.getElementsByName("act");
   			var values = new Array();
   			for(var i=0;i<id.length;i++){
@@ -64,10 +67,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					values.push(id[i].value);
   				}
   			}
-  			var roleName=document.getElementById("roleName").value;
-  			var roleIntroduction=document.getElementById("roleIntroduction").value;
-  			var rolePremission=document.getElementById("premissionLevel").value;
-  			window.location.href="AddRole?roleName="+roleName+"&values="+values.toString()+"&roleIntroduction="+roleIntroduction+"&premissionLevel="+rolePremission;
+  			if(roleName==""){
+  				alert("请输入角色名");
+  			}
+  			else{
+  				if(roleIntroduction==""){
+  					alert("请输入角色介绍");
+  				}
+  				else{
+  					if(rolePremission==""){
+  						alert("请输入角色权限");
+  					}
+  					else{
+  						if(values.length==0){
+  							alert("请选择权限范围");
+  						}
+  						else{
+  							window.location.href="AddRole?roleName="+roleName+"&values="+values.toString()+"&roleIntroduction="+roleIntroduction+"&premissionLevel="+rolePremission;
+  						}
+  					}
+  				}
+  			} 
+
+  			
 }
   			
   		

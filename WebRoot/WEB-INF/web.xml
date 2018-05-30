@@ -30,11 +30,7 @@
     <servlet-name>ViewCl</servlet-name>
     <url-pattern>/ViewCl</url-pattern>
   </servlet-mapping>
-  <servlet>
- 
-    <servlet-name>sds</servlet-name>
-    <servlet-class>cn.yutongjiaoyu.zhangwei.djzx.bl.sds</servlet-class>
-  </servlet>
+
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -46,10 +42,7 @@
     <servlet-name>AddRole</servlet-name>
     <url-pattern>/AddRole</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>sds</servlet-name>
-    <url-pattern>/servlet/sds</url-pattern>
-  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>deleteRole</servlet-name>
     <url-pattern>/deleteRole</url-pattern>

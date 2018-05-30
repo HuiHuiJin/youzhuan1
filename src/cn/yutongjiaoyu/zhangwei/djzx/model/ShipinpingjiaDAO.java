@@ -1,36 +1,47 @@
 package cn.yutongjiaoyu.zhangwei.djzx.model;
 
-import java.sql.Timestamp;
 import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.LockMode;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 
-/**
- * A data access object (DAO) providing persistence and search support for
- * Shipinpingjia entities. Transaction control of the save(), update() and
- * delete() operations can directly support Spring container-managed
- * transactions or they can be augmented to handle user-managed Spring
- * transactions. Each of these methods provides additional information for how
- * to configure it for the desired type of transaction control.
- * 
- * @see cn.yutongjiaoyu.zhangwei.djzx.model.Shipinpingjia
- * @author MyEclipse Persistence Tools
- */
 public class ShipinpingjiaDAO extends BaseHibernateDAO {
 	private static final Log log = LogFactory.getLog(ShipinpingjiaDAO.class);
-	// property constants
 	public static final String PINGJIAXINXI = "pingjiaxinxi";
 
+	//分页功能方法
+	@SuppressWarnings("unchecked")
+	public List<Shipinpingjia> findPage(Integer currentPage,Integer pageSize){
+		Query query=null;
+		int length=pageSize*(currentPage-1);
+		try {
+			String hql="from Shipinpingjia order by pingjiaid asc";
+			query=getSession().createQuery(hql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return query.setFirstResult(length).setMaxResults(pageSize).list();
+	
+	}
+	
 	public void save(Shipinpingjia transientInstance) {
+		Session session=null;
+		Transaction transaction=null;
 		log.debug("saving Shipinpingjia instance");
 		try {
-			getSession().save(transientInstance);
+			session=getSession();
+			transaction=session.beginTransaction();
+			session.save(transientInstance);
+			transaction.commit();
 			log.debug("save successful");
 		} catch (RuntimeException re) {
 			log.error("save failed", re);
+			transaction.rollback();
 			throw re;
 		}
 	}
@@ -58,6 +69,7 @@ public class ShipinpingjiaDAO extends BaseHibernateDAO {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List findByExample(Shipinpingjia instance) {
 		log.debug("finding Shipinpingjia instance by example");
 		try {
@@ -74,6 +86,7 @@ public class ShipinpingjiaDAO extends BaseHibernateDAO {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List findByProperty(String propertyName, Object value) {
 		log.debug("finding Shipinpingjia instance with property: "
 				+ propertyName + ", value: " + value);
@@ -89,10 +102,12 @@ public class ShipinpingjiaDAO extends BaseHibernateDAO {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List findByPingjiaxinxi(Object pingjiaxinxi) {
 		return findByProperty(PINGJIAXINXI, pingjiaxinxi);
 	}
 
+	@SuppressWarnings("rawtypes")
 	public List findAll() {
 		log.debug("finding all Shipinpingjia instances");
 		try {

@@ -1,10 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -61,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><a href="#">退出</a></li>
 				</ul>
 			</li>
-				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
+				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger"></span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
 				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
@@ -103,19 +101,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dd>
 				<ul>
 					<li><a data-href="product-brand.html" data-title="品牌管理" href="javascript:void(0)">部门管理</a></li>
-					
 				</ul>
 		    </dd>
 	</dl>
+	<!---------------------------------------------------------------------------------------评论区start-------------------------------------------------------------------->
 		<dl id="menu-comments">
 			<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="http://h-ui.duoshuo.com/admin/" data-title="评论列表" href="javascript:;">视频评论</a></li>
-					<li><a data-href="feedback-list.html" data-title="意见反馈" href="javascript:void(0)">文件评论</a></li>
+					<li><a data-href="videoview.jsp" data-title="视频评论" href="javascript:;">视频评论</a></li>
+					<li><a data-href="show.jsp" data-title="查看评论" href="http://localhost:8080/youzhuan1/ViewCl?currentPage=1">查看评论</a></li>
 			</ul>
 		</dd>
 	</dl>
+	<!----------------------------------------------------------------------------------------评论区end----------------------------------------------------------------------->
 		<dl id="menu-member">
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 员工管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
@@ -173,6 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</dl>
 </div>
 </aside>
+
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
 <section class="Hui-article-box">
 	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">

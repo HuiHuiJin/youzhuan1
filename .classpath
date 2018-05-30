@@ -25,5 +25,9 @@
 			<attribute name="owner.project.facets" value="me.hibernate"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+=======
+	<classpathentry kind="lib" path="/youzhuan1/WebRoot/WEB-INF/lib/c3p0-0.9.5-pre1.jar"/>
+>>>>>>> 金晖的分支
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

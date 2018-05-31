@@ -2,9 +2,7 @@ package cn.yutongjiaoyu.zhangwei.djzx.bl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,15 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.yutongjiaoyu.zhangwei.djzx.model.Juese;
 import cn.yutongjiaoyu.zhangwei.djzx.model.JueseDAO;
-import cn.yutongjiaoyu.zhangwei.djzx.model.Juesequanxian;
-import cn.yutongjiaoyu.zhangwei.djzx.model.JuesequanxianDAO;
 
-public class deleteRole extends HttpServlet {
+public class SearchRole extends HttpServlet {
 
 	/**
 	 * Constructor of the object.
 	 */
-	public deleteRole() {
+	public SearchRole() {
 		super();
 	}
 
@@ -45,25 +41,17 @@ public class deleteRole extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			String idString = request.getParameter("roleid");
-			int idInt = Integer.parseInt(idString);
-			//创建角色DAO来进行角色的删除
-			JueseDAO deleteRole = new JueseDAO();
-			Juese roleToDelete = deleteRole.findById(idInt);
-			int jsqxid=0;
-			//创建角色权限DAO，因为角色权限使用了角色ID作为外键，所以要先把对应的角色权限删除
-			JuesequanxianDAO deletejsqx = new JuesequanxianDAO();
-			Set<Juesequanxian> jsqx = roleToDelete.getJuesequanxians();
-			Iterator iterator = jsqx.iterator();
-			while(iterator.hasNext()){
-				jsqxid=((Juesequanxian)iterator.next()).getDuiyingid();
-			}
-			if(jsqxid!=0){
-				deletejsqx.delete(deletejsqx.findById(jsqxid));
-			}
+			String name =request.getParameter("name");
 			
-			deleteRole.delete(roleToDelete);
-			response.sendRedirect("./back/operation/deleteAlert.jsp");
+			JueseDAO  juesedao = new JueseDAO();
+			List<Juese> resultList = juesedao.findByProperty("jueseming", name);
+			if(resultList.size()!=0){
+				request.getSession().setAttribute("resultList",resultList);
+				request.getRequestDispatcher("./back/operation/SearchResult.jsp").forward(request, response);
+			}
+			else {
+				response.sendRedirect("./back/operation/searchErrorAlert.jsp");
+			}
 	}
 
 	/**

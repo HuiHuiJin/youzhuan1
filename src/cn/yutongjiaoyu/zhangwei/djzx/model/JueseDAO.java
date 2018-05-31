@@ -45,10 +45,14 @@ public class JueseDAO extends BaseHibernateDAO {
 
 	public void delete(Juese persistentInstance) {
 		log.debug("deleting Juese instance");
+		Session ss = getSession();
+		Transaction sw = ss.beginTransaction();
 		try {
-			getSession().delete(persistentInstance);
+			ss.delete(persistentInstance);
+			sw.commit();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			sw.rollback();
 			log.error("delete failed", re);
 			throw re;
 		}

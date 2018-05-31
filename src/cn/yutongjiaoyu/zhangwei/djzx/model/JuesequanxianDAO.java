@@ -44,10 +44,15 @@ public class JuesequanxianDAO extends BaseHibernateDAO {
 
 	public void delete(Juesequanxian persistentInstance) {
 		log.debug("deleting Juesequanxian instance");
+		Session ss = getSession();
+		Transaction sw = ss.beginTransaction();
 		try {
-			getSession().delete(persistentInstance);
+			
+			ss.delete(persistentInstance);
+			sw.commit();
 			log.debug("delete successful");
 		} catch (RuntimeException re) {
+			sw.rollback();
 			log.error("delete failed", re);
 			throw re;
 		}

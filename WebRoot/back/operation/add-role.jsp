@@ -33,9 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<tr>
 	  				<td>权限范围</td>
 	  				<td>
-	  				<input type="checkbox" name="act" value="浏览视频1">浏览视频1<input type="checkbox" name="act" value="浏览视频2">浏览视频 2 <input type="checkbox" name="act" value="浏览视频3">浏览视频3  <br/>
-	  				<input type="checkbox" name="act" value="浏览视频4">浏览视频4<input type="checkbox" name="act" value="浏览视频5">浏览视频5  <input type="checkbox" name="act" value="浏览视频6">浏览视频6  <br/>
-	  				<input type="checkbox" name="act" value="浏览视频7">浏览视频7<input type="checkbox" name="act" value="浏览视频8">浏览视频8  <input type="checkbox" name="act" value="浏览视频9">浏览视频 9 <br/>  
+	  				<input type="checkbox" name="act" value="浏览/评论视频">浏览/评论视频<input type="checkbox" name="act" value="发布视频">发布视频<input type="checkbox" name="act" value="修改/删除部门">修改/删除部门<br/>
+	  				<input type="checkbox" name="act" value="增加/删除员工">增加/删除员工<input type="checkbox" name="act" value="设置管理员">设置管理员 
 	  			    </td>
 	  			</tr>
 	  			<tr><td>权限等级</td><td><input type="text" id="premissionLevel" name="premissionLevel" autocomplete="off"/></td></tr>

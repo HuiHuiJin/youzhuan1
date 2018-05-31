@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dd>
 				<ul>
 					<li><a data-href="videoview.jsp" data-title="视频评论" href="javascript:;">视频评论</a></li>
-					<li><a data-href="show.jsp" data-title="查看评论" href="http://localhost:8080/youzhuan1/ViewCl?currentPage=1">查看评论</a></li>
+					<li><a data-href="show.jsp" data-title="查看评论" href="http://localhost:8081/youzhuan1/ViewCl?currentPage=1">查看评论</a></li>
 			</ul>
 		</dd>
 	</dl>

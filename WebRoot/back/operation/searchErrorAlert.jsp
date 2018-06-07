@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
   </body>
   <script type="text/javascript">
+  //查询失败时会跳转到该页面，提示错误后返回主界面
   alert("查询失败，请检查输入内容");
   window.open("./back/operation/admin-role.jsp","_self");
   </script>

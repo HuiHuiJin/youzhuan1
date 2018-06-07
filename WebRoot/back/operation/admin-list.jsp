@@ -33,6 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</div>
   		
   		<script language=javascript>
+  		//该页面是管理员列表，因为和角色表有关联，角色表还未完成，所以暂时闲置
   		var pagewidth=document.body.clientWidth;
   		var tablewidth=document.getElementById("table").width;
   		function startup(){

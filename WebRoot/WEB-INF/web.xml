@@ -49,6 +49,13 @@
     <servlet-name>AlertPage</servlet-name>
     <servlet-class>AlertPage</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>editRole</servlet-name>
+    <servlet-class>cn.yutongjiaoyu.zhangwei.djzx.bl.editRole</servlet-class>
+  </servlet>
+
 
 
 
@@ -68,6 +75,10 @@
   <servlet-mapping>
     <servlet-name>AlertPage</servlet-name>
     <url-pattern>/AlertPage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>editRole</servlet-name>
+    <url-pattern>/editRole</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

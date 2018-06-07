@@ -55,11 +55,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</div>
   		
   		<script language=javascript>
+  		//表格置中
   		var pagewidth=document.body.clientWidth;
   		var tablewidth=document.getElementById("table").width;
   		function startup(){
   			document.getElementById("div").style="margin-left:"+(pagewidth-tablewidth)/2+"px";
   		}
+  		
+  		//删除角色函数，获取需要删除对象的ID并传往Servlet进行处理
   		function deleteRole(object){
   			var result =confirm("确认删除？");
   			var roleid=object.id;
@@ -69,6 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		window.focus(startup());
   		
+  		//后退函数，返回上一页
   		function turnback(){
   			window.open("./back/operation/admin-role.jsp","_self");
   		}

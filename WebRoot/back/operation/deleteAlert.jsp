@@ -25,6 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
   </body>
   <script type="text/javascript">
+  	//删除角色成功后进行提示并返回主界面
   	alert("删除成功");
   	window.open("./back/operation/admin-role.jsp","_self");
   </script>

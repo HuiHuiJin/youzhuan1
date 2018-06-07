@@ -68,23 +68,22 @@ public class AddRole extends HttpServlet {
 			String premisson = request.getParameter("values");
 			String premissionLevel = request.getParameter("premissionLevel");
 			
-			//新建角色对象，将值传入其中
+			//新建角色对象，将值传入其中并保存至数据库
 			Juese juese = new Juese();
 			juese.setJueseming(name);
 			juese.setJuesejieshao(introduction);
 			JueseDAO juesedao = new JueseDAO();
 			juesedao.save(juese);
 			
-			//新建角色权限对象，将值传入其中
+			//新建角色权限对象，将值传入其中并保存数据库
 			Juesequanxian jsqx = new Juesequanxian();
 			jsqx.setCaozuobiao(premisson);
 			jsqx.setQuanxian(premissionLevel);
 			jsqx.setJuese(juese);
 			JuesequanxianDAO jsqxdao = new JuesequanxianDAO();
 			jsqxdao.save(jsqx);
-		
-			System.out.println(juesedao.findById(1));
 			
+			//重定向至主界面
 			response.sendRedirect("./back/operation/admin-role.jsp");
 			
 	}

@@ -41,15 +41,21 @@ public class SearchRole extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			//获取角色名
 			String name =request.getParameter("name");
 			
 			JueseDAO  juesedao = new JueseDAO();
+			
+			//根据角色名来搜索相关的角色
 			List<Juese> resultList = juesedao.findByProperty("jueseming", name);
+			
 			if(resultList.size()!=0){
+				//如果搜索结果不为空，往Session中添加搜索结果，并代值跳转到搜索结果页面
 				request.getSession().setAttribute("resultList",resultList);
 				request.getRequestDispatcher("./back/operation/SearchResult.jsp").forward(request, response);
 			}
 			else {
+				//如果搜索结果为空，跳转到错误提示页面
 				response.sendRedirect("./back/operation/searchErrorAlert.jsp");
 			}
 	}

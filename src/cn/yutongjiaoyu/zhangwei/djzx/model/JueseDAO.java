@@ -122,11 +122,15 @@ public class JueseDAO extends BaseHibernateDAO {
 
 	public Juese merge(Juese detachedInstance) {
 		log.debug("merging Juese instance");
+		Session ss = getSession();
+		Transaction tr = ss.beginTransaction();
 		try {
-			Juese result = (Juese) getSession().merge(detachedInstance);
+			Juese result = (Juese) ss.merge(detachedInstance);
+			tr.commit();
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
+			tr.rollback();
 			log.error("merge failed", re);
 			throw re;
 		}
@@ -134,10 +138,14 @@ public class JueseDAO extends BaseHibernateDAO {
 
 	public void attachDirty(Juese instance) {
 		log.debug("attaching dirty Juese instance");
+		Session ss = getSession();
+		Transaction tr = ss.beginTransaction();
 		try {
-			getSession().saveOrUpdate(instance);
+			ss.saveOrUpdate(instance);
+			tr.commit();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
+			tr.rollback();
 			log.error("attach failed", re);
 			throw re;
 		}
@@ -145,10 +153,15 @@ public class JueseDAO extends BaseHibernateDAO {
 
 	public void attachClean(Juese instance) {
 		log.debug("attaching clean Juese instance");
+		Session ss = getSession();
+		Transaction tr = ss.beginTransaction();
 		try {
-			getSession().lock(instance, LockMode.NONE);
+			
+			ss.lock(instance, LockMode.NONE);
+			tr.commit();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
+			tr.rollback();
 			log.error("attach failed", re);
 			throw re;
 		}
@@ -156,13 +169,17 @@ public class JueseDAO extends BaseHibernateDAO {
 	
 	public List<Juese> findpage(int begin,int end) {
 		log.debug("finding all Juese instances");
+		Session ss = getSession();
 		try {
 			String queryString = "from Juese";
-			Query queryObject = getSession().createQuery(queryString);
+			Query queryObject = ss.createQuery(queryString);
+			ss.flush();
+			ss.clear();
 			return queryObject.setFirstResult(begin).setMaxResults(end).list();
 		} catch (RuntimeException re) {
 			log.error("find all failed", re);
 			throw re;
 		}
 	}
+	
 }

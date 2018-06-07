@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'add-role.jsp' starting page</title>
+    <title>My JSP 'roleEdit.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,14 +22,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
+   <body>
     	<div id="div">
+
     		<table id="table1" width="500">
     			<tr><td colspan="4" align="right"><input type=button value="后退" onclick="turnback()"/></td></tr>
     		</table>
 	  		<table id="table" border="1" width="500" cellspacing="0" >
-	  			<tr><td>角色名</td><td><input type="text" name="roleName" id="roleName" autocomplete="off"/></td></tr>
-	  			<tr><td valign="top">角色介绍</td><td><textarea cols="55" rows="20" style="resize:none" name="roleIntroduction" id="roleIntroduction"></textarea></td></tr>
+	  			<tr><td>角色名</td><td><input type="text" name="roleName" id="roleName" autocomplete="off" value="<%=request.getSession().getAttribute("jueseming")%>"/></td></tr>
+	  			<tr><td valign="top">角色介绍</td><td><textarea cols="55" rows="20" style="resize:none" name="roleIntroduction" id="roleIntroduction"><%=request.getSession().getAttribute("juesejieshao")%></textarea></td></tr>
 	  			<tr>
 	  				<td>权限范围</td>
 	  				<td>
@@ -37,28 +38,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  				<input type="checkbox" name="act" value="增加/删除员工">增加/删除员工<input type="checkbox" name="act" value="设置管理员">设置管理员 
 	  			    </td>
 	  			</tr>
-	  			<tr><td>权限等级</td><td><input type="text" id="premissionLevel" name="premissionLevel" autocomplete="off"/></td></tr>
+	  			<tr><td>权限等级</td><td><input type="text" id="premissionLevel" name="premissionLevel" autocomplete="off" value="<%=request.getSession().getAttribute("qxdj")%>"/></td></tr>
 	  		</table>
 	  		<input type="button" onclick="send()" value="提交"/>
   		</div>
   		
   		<script language=javascript>
-  		
-  		//获取窗口宽度，实现窗口始终居中的效果
   		var pagewidth=document.body.clientWidth;
   		var tablewidth=document.getElementById("table").width;
   		function startup(){
   			document.getElementById("div").style="margin-left:"+(pagewidth-tablewidth)/2+"px";
+  			
+  			var checkobj = document.getElementsByName("act");
+  			var qx ="<%=request.getSession().getAttribute("jsqxs")%>";
+  			for(i=0;i<checkobj.length;i++){
+  				tmpqx = qx.split(",");
+  				for(j=0;j<tmpqx.length;j++){
+  					if(tmpqx[j]==checkobj[i].value){
+  						checkobj[i].checked=true;
+  						break;
+  					}
+  				}
+  			}
   		}
   		window.focus(startup());
   		
-  		//返回上一页按钮
   		function turnback(){
   			window.open("./back/operation/admin-role.jsp","_self");
   		
   		}
   		
-  		//将数据发送至servlet处理，进行了是否输入的判断
   		function send(){
   			var roleName=document.getElementById("roleName").value;
   			var roleIntroduction=document.getElementById("roleIntroduction").value;
@@ -86,16 +95,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   							alert("请选择权限范围");
   						}
   						else{
-  							window.location.href="AddRole?roleName="+roleName+"&values="+values.toString()+"&roleIntroduction="+roleIntroduction+"&premissionLevel="+rolePremission;
+  							window.location.href="editRole?method=merge&roleName="+roleName+"&values="+values.toString()+"&roleIntroduction="+roleIntroduction+"&premissionLevel="+rolePremission+"&id="+<%=request.getSession().getAttribute("id")%>;
   						}
   					}
   				}
   			} 
-
-  			
-}
-  			
-  		
+		}
   		</script>
   </body>
 </html>

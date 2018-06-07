@@ -123,12 +123,16 @@ public class JuesequanxianDAO extends BaseHibernateDAO {
 
 	public Juesequanxian merge(Juesequanxian detachedInstance) {
 		log.debug("merging Juesequanxian instance");
+		Session ss = getSession();
+		Transaction tr = ss.beginTransaction();
 		try {
-			Juesequanxian result = (Juesequanxian) getSession().merge(
+			Juesequanxian result = (Juesequanxian) ss.merge(
 					detachedInstance);
+			tr.commit();
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
+			tr.rollback();
 			log.error("merge failed", re);
 			throw re;
 		}
@@ -136,10 +140,14 @@ public class JuesequanxianDAO extends BaseHibernateDAO {
 
 	public void attachDirty(Juesequanxian instance) {
 		log.debug("attaching dirty Juesequanxian instance");
+		Session ss = getSession();
+		Transaction ty = ss.beginTransaction();
 		try {
-			getSession().saveOrUpdate(instance);
+			ss.saveOrUpdate(instance);
+			ty.commit();
 			log.debug("attach successful");
 		} catch (RuntimeException re) {
+			ty.rollback();
 			log.error("attach failed", re);
 			throw re;
 		}

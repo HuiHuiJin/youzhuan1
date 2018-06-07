@@ -45,6 +45,7 @@ public class deleteRole extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			//获取角色ID
 			String idString = request.getParameter("roleid");
 			int idInt = Integer.parseInt(idString);
 			//创建角色DAO来进行角色的删除
@@ -58,11 +59,12 @@ public class deleteRole extends HttpServlet {
 			while(iterator.hasNext()){
 				jsqxid=((Juesequanxian)iterator.next()).getDuiyingid();
 			}
+			//如果角色权限能够找到，先删除角色权限之后再删除角色
 			if(jsqxid!=0){
 				deletejsqx.delete(deletejsqx.findById(jsqxid));
+				deleteRole.delete(roleToDelete);
 			}
-			
-			deleteRole.delete(roleToDelete);
+			//重定向至主页
 			response.sendRedirect("./back/operation/deleteAlert.jsp");
 	}
 

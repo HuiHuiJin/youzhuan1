@@ -1,17 +1,13 @@
-<<<<<<< HEAD
+
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8" contentType="text/html; charset=utf-8"%>
-=======
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
 <%@ page import="cn.yutongjiaoyu.zhangwei.djzx.model.*" %>
->>>>>>> pr/9
+
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<<<<<<< HEAD
-=======
 
->>>>>>> pr/9
 <!DOCTYPE HTML>
 <html>
 <head>

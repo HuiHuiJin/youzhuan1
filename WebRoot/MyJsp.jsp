@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+=======
+<%@page import="cn.yutongjiaoyu.zhangwei.djzx.model.*"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+
+>>>>>>> pr/9
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,10 +30,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     
+<<<<<<< HEAD
    <form action="ShipinpingjiaCl" method="get">
     <input type="text" name="username" />
     <input type="submit" value="提交"/>
    </form>
+=======
+<% 
+YuangongDAO yg=new YuangongDAO();
+List<Yuangong> list=yg.findAll();
+%>
+
+	<select name="1" id="1">
+	<option value="null">员工</option>
+	<%
+		for(Yuangong y:list){
+		%>
+<option value=<%=y.getYuangongid() %>> <%=y.getYuangongming() %></option>
+		<%
+					}
+	 %>
+	</select>
+    
+>>>>>>> pr/9
     
   </body>
 </html>

@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="cn.yutongjiaoyu.zhangwei.djzx.model.*" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 
 <!DOCTYPE HTML>
 <html>
@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <title>后台管理框架首页</title>
-<meta name="keywords" content="铜仁幼专，电教中心">
+<meta name="keywords" content="铜仁幼专，电教中心2222222222222222">
 <meta name="description" content=" ">
 </head>
 <body>
@@ -120,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe60d;</i> 员工管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a data-href="member-list.html" data-title="会员列表" href="javascript:;">员工列表</a></li>
+					<li><a data-href="yuangonglist.jsp" data-title="会员列表" href="javascript:;">员工列表</a></li>
  
 					<li><a data-href="member-scoreoperation.html" data-title="积分管理" href="javascript:;">任务管理</a></li>
 	     		</ul>

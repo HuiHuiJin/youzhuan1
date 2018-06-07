@@ -1,0 +1,15 @@
+<% 
+
+%>
+
+	<select name="1" id="1">
+	<option value="null">员工</option>
+	<%
+		for(Yuangong y:list){
+		%>
+		<option value=<%=y.getYuangongid() %>><%=y.getYuangongming() %>
+		</option>
+		<%
+		}
+	 %>
+	</select>
